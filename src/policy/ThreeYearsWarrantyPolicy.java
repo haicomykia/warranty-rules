@@ -5,11 +5,8 @@ import rules.SubscribeRule;
 import rules.WarrantyPeriodRule;
 import warranty.WarrantyEnum;
 
-/**
- * ベーシック保証のポリシー
- */
-public class BasicWarrantyPolicy implements IWarrantyPolicy {
-
+public class ThreeYearsWarrantyPolicy implements IWarrantyPolicy {
+	
 	/**
 	 * 保証
 	 */
@@ -20,8 +17,8 @@ public class BasicWarrantyPolicy implements IWarrantyPolicy {
 	 */
 	final private WarrantyPolicy policy;
 	
-	public BasicWarrantyPolicy() {
-		this.warranty = WarrantyEnum.BASIC_WARRANTY;
+	public ThreeYearsWarrantyPolicy() {
+		this.warranty = WarrantyEnum.THEERY_YEARS_WARRANTY;
 		
 		this.policy = new WarrantyPolicy(this.warranty);
 		this.policy.add(new SubscribeRule());

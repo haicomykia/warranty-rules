@@ -1,6 +1,6 @@
 package policy;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import customer.Customer;
@@ -25,7 +25,8 @@ public class WarrantyPolicy {
 	final private WarrantyEnum warranty;
 	
 	public WarrantyPolicy(WarrantyEnum warraty) {
-		this.rules = new HashSet<>();
+		// 判定順を追加順にしたいのでLinkedHashSet
+		this.rules = new LinkedHashSet<>(); 
 		this.warranty = warraty;
 	}
 	
@@ -50,5 +51,20 @@ public class WarrantyPolicy {
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * 加入状況を調べて、条件を満たさない場合は該当するメッセージを返す
+	 * @param customer 顧客オブジェクト
+	 * @return メッセージ
+	 */
+	public String apply(Customer customer) {
+		for (IWarrantySubscribeRule rule : rules) {
+			if (!rule.complyWith(customer, this.warranty)) {
+				return rule.apply(customer, this.warranty);
+			}
+		}
+		
+		return "";
 	}
 }

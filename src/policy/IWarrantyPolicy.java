@@ -1,7 +1,6 @@
 package policy;
 
 import customer.Customer;
-import message.IMessage;
 
 /**
  * ポリシークラスのインタフェース
@@ -15,11 +14,5 @@ public interface IWarrantyPolicy {
 	 */
 	public boolean complyAll(Customer customer);
 	
-	/**
-	 * メッセージを返す
-	 * @param message メッセージインタフェースの実装クラス
-	 * @param customer 顧客オブジェクト
-	 * @return メッセージ
-	 */
-	public String apply(IMessage message, Customer customer);
+	public String applyMessage(Customer customer);
 }
