@@ -1,7 +1,6 @@
 package rules;
 
 import customer.Customer;
-import message.IMessage;
 import message.MessageUncontracted;
 import warranty.WarrantyEnum;
 
@@ -10,15 +9,6 @@ import warranty.WarrantyEnum;
  */
 public class SubscribeRule implements IWarrantySubscribeRule {
 	
-	/**
-	 * メッセージクラス
-	 */
-	final private IMessage message;
-	
-	public SubscribeRule() {
-		this.message = new MessageUncontracted();
-	}
-	
 	@Override
 	public boolean complyWith(Customer customer, WarrantyEnum warranty) {
 		return customer.hasSubscribed(warranty);
@@ -26,6 +16,7 @@ public class SubscribeRule implements IWarrantySubscribeRule {
 	
 	@Override
 	public String apply(Customer customer, WarrantyEnum warranty) {
-		return this.message.apply(customer, warranty);
+		var messenger = new MessageUncontracted(customer, warranty);
+		return messenger.apply();
 	}
 }

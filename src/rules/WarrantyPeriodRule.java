@@ -3,7 +3,6 @@ package rules;
 import java.time.LocalDate;
 
 import customer.Customer;
-import message.IMessage;
 import message.MessageWarrantyExpired;
 import warranty.WarrantyEnum;
 
@@ -11,16 +10,6 @@ import warranty.WarrantyEnum;
  * 保証期間のポリシークラス
  */
 public class WarrantyPeriodRule implements IWarrantySubscribeRule {
-	
-	/**
-	 * メッセージクラス
-	 */
-	final private IMessage message;
-	
-	public WarrantyPeriodRule() {
-		this.message = new MessageWarrantyExpired();
-	}
-	
 	@Override
 	public boolean complyWith(Customer customer, WarrantyEnum warranty) {
 		if (LocalDate.now().isBefore(customer.getStartDate())) {
@@ -36,6 +25,7 @@ public class WarrantyPeriodRule implements IWarrantySubscribeRule {
 	
 	@Override
 	public String apply(Customer customer, WarrantyEnum warranty) {
-		return this.message.apply(customer, warranty);
+		var messenger = new MessageWarrantyExpired(customer, warranty);
+		return messenger.apply();
 	}
 }
