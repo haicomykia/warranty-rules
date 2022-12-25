@@ -8,14 +8,12 @@ import rules.IWarrantySubscribeRule;
 import warranty.WarrantyEnum;
 
 /**
- * 
  * 保証のポリシークラス
- *
  */
 public class WarrantyPolicy {
 	
 	/**
-	 * ルール
+	 * 加入状況のルール
 	 */
 	final private Set<IWarrantySubscribeRule> rules;
 	
@@ -31,10 +29,14 @@ public class WarrantyPolicy {
 	}
 	
 	/**
-	 * ルールを追加
-	 * @param rule ルール
+	 * 加入状況のルールを追加
+	 * @param rule 加入状況ノール
 	 */
 	public void add(IWarrantySubscribeRule rule) {
+		if (rule == null) {
+			throw new IllegalArgumentException("空のルールは指定できません。");
+		}
+		
 		this.rules.add(rule);
 	}
 	

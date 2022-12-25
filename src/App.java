@@ -1,24 +1,15 @@
 import java.time.LocalDate;
-import java.util.HashMap;
 
 import customer.Customer;
-import policy.BasicWarrantyPolicy;
-import policy.IWarrantyPolicy;
-import policy.ThreeYearsWarrantyPolicy;
+import policy.WarrantyPolicies;
 import warranty.WarrantyEnum;
 
 public class App {
 	public static void main(String[] args) {
 		var taro = Customer.of("太郎");
-		taro.subscribeWarranty(WarrantyEnum.BASIC_WARRANTY, LocalDate.of(2019, 12, 1));
+		taro.subscribeWarranty(WarrantyEnum.THEERY_YEARS_WARRANTY, LocalDate.of(2019, 12, 25));
 		
-		HashMap<WarrantyEnum, IWarrantyPolicy> policies = new HashMap<>();
-		policies.put(WarrantyEnum.BASIC_WARRANTY, new BasicWarrantyPolicy());
-		policies.put(WarrantyEnum.THEERY_YEARS_WARRANTY, new ThreeYearsWarrantyPolicy());
-		
-		var policy = policies.get(WarrantyEnum.THEERY_YEARS_WARRANTY);
-		String message = policy.applyMessage(taro);
-		
-		System.out.println(message);
+		var policy = new WarrantyPolicies(taro);
+		System.out.println(policy.apply(WarrantyEnum.THEERY_YEARS_WARRANTY));
 	}
 }

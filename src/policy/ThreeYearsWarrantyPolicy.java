@@ -5,6 +5,9 @@ import rules.SubscribeRule;
 import rules.WarrantyPeriodRule;
 import warranty.WarrantyEnum;
 
+/**
+ * 三年保証のポリシークラス
+ */
 public class ThreeYearsWarrantyPolicy implements IWarrantyPolicy {
 	
 	/**
@@ -31,7 +34,7 @@ public class ThreeYearsWarrantyPolicy implements IWarrantyPolicy {
 	}
 	
 	@Override
-	public String applyMessage(Customer customer) {
+	public String apply(Customer customer) {
 		return this.policy.apply(customer);
 	}
 }

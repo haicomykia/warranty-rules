@@ -4,7 +4,7 @@ import customer.Customer;
 import warranty.WarrantyEnum;
 
 /**
- * 保証加入のルール
+ * 保証加入状況のルール
  */
 public interface IWarrantySubscribeRule {
 	
@@ -17,10 +17,9 @@ public interface IWarrantySubscribeRule {
 	public boolean complyWith(Customer customer, WarrantyEnum warranty);
 	
 	/**
-	 * メッセージを返す
 	 * @param customer 顧客クラスのオブジェクト
 	 * @param warranty 保証の列挙体メンバ
-	 * @return メッセージ
+	 * @return ルールに適合または不適合のときメッセージ
 	 */
 	public String apply(Customer customer, WarrantyEnum warranty);
 }

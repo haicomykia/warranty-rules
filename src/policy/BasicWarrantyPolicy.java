@@ -34,7 +34,7 @@ public class BasicWarrantyPolicy implements IWarrantyPolicy {
 	}
 	
 	@Override
-	public String applyMessage(Customer customer) {
+	public String apply(Customer customer) {
 		return this.policy.apply(customer);
 	}
 }

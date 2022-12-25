@@ -14,5 +14,9 @@ public interface IWarrantyPolicy {
 	 */
 	public boolean complyAll(Customer customer);
 	
-	public String applyMessage(Customer customer);
+	/**
+	 * @param customer 顧客オブジェクト
+	 * @return 保証の加入状況を満たさない場合のエラーメッセージ
+	 */
+	public String apply(Customer customer);
 }
